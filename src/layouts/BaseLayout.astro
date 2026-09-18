@@ -1,0 +1,130 @@
+---
+import { site } from '../config/site';
+
+interface Props {
+  title: string;
+  description: string;
+  path?: string;
+}
+
+const { title, description, path = '/' } = Astro.props;
+const canonical = new URL(path, site.url).toString();
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={`${site.url}/og-capa.jpg`} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    {site.ga4Id && (
+      <>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${site.ga4Id}`}></script>
+        <script define:vars={{ ga4Id: site.ga4Id }}>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', ga4Id);
+        </script>
+      </>
+    )}
+    {site.gtmId && (
+      <script define:vars={{ gtmId: site.gtmId }}>
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer',gtmId);
+      </script>
+    )}
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'AccountingService',
+      name: site.nome,
+      url: site.url,
+      telephone: site.fone1,
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: site.endereco.logradouro,
+        addressLocality: site.endereco.cidade,
+        addressRegion: site.endereco.uf,
+        postalCode: site.endereco.cep,
+        addressCountry: 'BR',
+      },
+      areaServed: 'Rio de Janeiro',
+    })} />
+    <style>
+      :root {
+        --azul: #1d4ed8;
+        --azul-escuro: #1e3a8a;
+        --tinta: #0f172a;
+        --cinza: #475569;
+        --fundo: #f8fafc;
+        --vermelho: #dc2626;
+      }
+      * { box-sizing: border-box; margin: 0; }
+      body { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; color: var(--tinta); line-height: 1.6; }
+      .wrap { max-width: 1120px; margin: 0 auto; padding: 0 1.25rem; }
+      .btn { display: inline-block; padding: .8rem 1.6rem; border-radius: .6rem; font-weight: 700; text-decoration: none; }
+      .btn--azul { background: var(--azul); color: #fff; }
+      .btn--wpp { background: #22c55e; color: #fff; }
+      section { padding: 3.5rem 0; }
+      h1 { font-size: clamp(2rem, 5vw, 3rem); line-height: 1.15; }
+      h2 { font-size: clamp(1.5rem, 3.5vw, 2.1rem); line-height: 1.25; margin-bottom: 1rem; }
+    </style>
+  </head>
+  <body>
+    <header class="topo">
+      <div class="wrap topo__inner">
+        <a href="/" aria-label="Início">
+          <img src="/logo.png" alt="Solucion Contábil" width="180" height="48" />
+        </a>
+        <a class="btn btn--azul" href={`https://wa.me/${site.whatsapp}?text=${encodeURIComponent('Olá! Vim pelo site e gostaria de falar com um especialista.')}`} target="_blank" rel="noopener">Fale Conosco</a>
+      </div>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="rodape">
+      <div class="wrap rodape__grid">
+        <div>
+          <p><strong>Solucion Consultoria &amp; Assessoria Contábil LTDA</strong></p>
+          <p>www.legalizacaodeempresa.com.br</p>
+        </div>
+        <div>
+          <p><strong>Endereço</strong></p>
+          <p>{site.endereco.logradouro}<br />{site.endereco.bairro}, {site.endereco.cidade}, {site.endereco.uf}<br />CEP {site.endereco.cep}</p>
+        </div>
+        <div>
+          <p><strong>Contato</strong></p>
+          <p>{site.fone1}<br />{site.fone2}</p>
+        </div>
+      </div>
+      <div class="wrap rodape__assinatura">
+        <p>Desenvolvido por <a href="https://desenvolvimentodesites.dev.br/" target="_blank" rel="noopener">Alexis Marketing &amp; Dev</a></p>
+      </div>
+    </footer>
+    <a class="wpp-float" href={`https://wa.me/${site.whatsapp}?text=${encodeURIComponent('Olá! Vim pelo site e gostaria de falar com um especialista.')}`} target="_blank" rel="noopener" aria-label="Falar no WhatsApp">✆</a>
+    <style>
+      .topo { background: #fff; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 10; }
+      .topo__inner { display: flex; align-items: center; justify-content: space-between; padding: .7rem 1.25rem; }
+      .rodape { background: var(--tinta); color: #cbd5e1; }
+      .rodape__grid { display: grid; gap: 1.5rem; padding: 2.5rem 1.25rem 1rem; }
+      .rodape a { color: #fff; }
+      .rodape__assinatura { border-top: 1px solid #334155; padding: 1rem 1.25rem 1.5rem; font-size: .875rem; }
+      .wpp-float { position: fixed; right: 1.2rem; bottom: 1.2rem; width: 56px; height: 56px; border-radius: 50%; background: #22c55e; color: #fff; font-size: 1.7rem; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 8px 24px rgba(0,0,0,.3); }
+      @media (min-width: 760px) { .rodape__grid { grid-template-columns: repeat(3, 1fr); } }
+    </style>
+  </body>
+</html>

@@ -1,0 +1,182 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site, whatsappLink } from '../config/site';
+
+const wpp = whatsappLink();
+const wppAbrir = whatsappLink('Olá! Quero abrir uma empresa e gostaria de uma cotação.');
+
+const especialidades = [
+  {
+    titulo: 'Legalização de Empresa',
+    itens: ['Abertura de CNPJ', 'Todo processo sem burocracia', 'Tudo conforme sua atividade'],
+  },
+  {
+    titulo: 'Consultoria e Assessoria',
+    itens: ['Consultoria personalizada', 'Atendimento humanizado', 'Profissional especializado'],
+  },
+  {
+    titulo: 'Planejamento Tributário',
+    itens: ['Redução de tributação de forma legal', 'Regime tributário ideal', 'Consultoria fiscal', 'Recuperação de impostos'],
+  },
+  {
+    titulo: 'Gestão de Pessoal',
+    itens: ['Gestão de colaboradores', 'Folha de pagamento', 'E-Social'],
+  },
+];
+
+const planos = [
+  {
+    nome: 'Essencial',
+    pub: 'Para empresas iniciais',
+    detalhe: 'Sem empregados',
+    itens: ['Escrituração contábil básica', 'Envio de impostos', 'Envio das conformidades', 'Relatórios mensais', 'Suporte por email'],
+    destaque: false,
+  },
+  {
+    nome: 'Profissional',
+    pub: 'Para empresas em crescimento',
+    detalhe: 'Com até 2 empregados',
+    itens: ['Escrituração contábil básica', 'Escrituração Fiscal', 'Gestão de pessoal', 'Envio de impostos', 'Envio das conformidades', 'Relatórios mensais', 'Suporte por email', 'Suporte por WhatsApp', 'Atendimento humanizado'],
+    destaque: true,
+  },
+  {
+    nome: 'Empresarial',
+    pub: 'Para empresas consolidadas',
+    detalhe: 'A partir de 3 funcionários ou mais',
+    itens: ['Escrituração contábil básica', 'Escrituração Fiscal', 'Gestão de pessoal', 'Envio de impostos', 'Envio das conformidades', 'Relatórios mensais', 'Consultoria individualizada', 'Suporte por email', 'Suporte por WhatsApp', 'Atendimento humanizado'],
+    destaque: false,
+  },
+];
+---
+
+<BaseLayout
+  title="Legalização de Empresa e Contabilidade no Rio de Janeiro | Solucion Contábil"
+  description="Abertura de empresa, contabilidade fiscal, planejamento tributário e gestão de pessoal no Rio de Janeiro. Solucion Consultoria & Assessoria Contábil: 24+ anos, 500+ empresas atendidas. Fale no WhatsApp."
+  path="/"
+>
+  <section class="hero">
+    <div class="wrap hero__inner">
+      <img src="/logo.png" alt="Solucion Contábil" width="320" height="86" fetchpriority="high" />
+      <h1>Solucion Consultoria &amp; Assessoria Contábil</h1>
+      <p class="lead">Assessoria contábil completa no Rio de Janeiro com 24+ anos de experiência. Abertura de empresa, contabilidade fiscal, perícia contábil e mais de 500 empresas atendidas.</p>
+      <div class="btn-row">
+        <a class="btn btn--wpp" href={wpp} target="_blank" rel="noopener">Falar no WhatsApp</a>
+        <a class="btn btn--azul" href="#servicos">Conhecer Serviços</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="wrap stats__grid">
+      <div><strong>24+</strong><span>Anos no mercado</span></div>
+      <div><strong>500+</strong><span>Empresas atendidas</span></div>
+      <div><strong>98%</strong><span>Satisfação</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Confiança e Credibilidade</p>
+      <h2>Sua Contabilidade em Boas Mãos</h2>
+      <p>Sabemos que a escolha de um contador é baseada em confiança. Por isso, fazemos questão de mostrar que a Solucion Contábil é feita por pessoas reais, em um ambiente físico preparado para te receber.</p>
+      <div class="duas-col">
+        <div>
+          <h3>Sede Própria no Rio de Janeiro</h3>
+          <p>Estamos localizados no Centro do RJ (Rua do Acre), prontos para reuniões presenciais sempre que necessário.</p>
+        </div>
+        <div>
+          <h3>Atendimento Humanizado</h3>
+          <p>Nada de robôs. Você fala diretamente com especialistas que entendem o seu negócio e estão do seu lado.</p>
+        </div>
+      </div>
+      <div class="btn-row">
+        <a class="btn btn--azul" href={wpp} target="_blank" rel="noopener">Falar com um Especialista</a>
+      </div>
+      <p class="nota">Espaço verificado e equipe pronta para atendimento presencial ou online.</p>
+    </div>
+  </section>
+
+  <section id="servicos" class="fundo">
+    <div class="wrap">
+      <p class="eyebrow">Nossas Especialidades</p>
+      <h2>Soluções Completas para sua Empresa</h2>
+      <p>Oferecemos serviços especializados em gestão contábil, fiscal e trabalhista com foco em resultados e eficiência.</p>
+      <div class="cards">
+        {especialidades.map((e) => (
+          <div class="card">
+            <h3>{e.titulo}</h3>
+            <ul>
+              {e.itens.map((i) => <li>{i}</li>)}
+            </ul>
+          </div>
+        ))}
+      </div>
+      <div class="btn-row">
+        <a class="btn btn--wpp" href={wppAbrir} target="_blank" rel="noopener">Quero abrir uma empresa</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Planos</p>
+      <h2>Escolha o Plano Ideal</h2>
+      <p>Planos flexíveis com suporte especializado e total transparência nos custos.</p>
+      <div class="cards">
+        {planos.map((p) => (
+          <div class:list={['card', p.destaque && 'card--destaque']}>
+            {p.destaque && <span class="selo">Mais Popular</span>}
+            <h3>{p.nome}</h3>
+            <p class="plano-pub">{p.pub}</p>
+            <p class="plano-det">{p.detalhe}</p>
+            <p class="plano-consulte">Consulte agora no WhatsApp</p>
+            <ul>
+              {p.itens.map((i) => <li>{i}</li>)}
+            </ul>
+            <a class="btn btn--azul" href={wpp} target="_blank" rel="noopener">Solicitar Cotação</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="fundo">
+    <div class="wrap centro">
+      <h2>Pronto para impulsionar seu negócio?</h2>
+      <p>Entre em contato conosco e descubra como nossas soluções podem ajudar sua empresa.</p>
+      <div class="btn-row">
+        <a class="btn btn--wpp" href={wpp} target="_blank" rel="noopener">Falar no WhatsApp</a>
+        <a class="btn btn--azul" href={`mailto:${site.email || ''}`}>Enviar E-mail</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero { text-align: center; background: linear-gradient(180deg, #eff6ff, #fff); }
+  .hero img { max-width: 100%; height: auto; }
+  .hero h1 { margin: 1.2rem 0 .8rem; }
+  .lead { font-size: 1.15rem; color: var(--cinza); max-width: 60ch; margin: 0 auto 1.6rem; }
+  .btn-row { display: flex; gap: .8rem; flex-wrap: wrap; margin-top: 1.4rem; }
+  .hero .btn-row { justify-content: center; }
+  .centro { text-align: center; }
+  .centro .btn-row { justify-content: center; }
+  .eyebrow { text-transform: uppercase; letter-spacing: .08em; font-size: .8rem; font-weight: 700; color: var(--azul); }
+  .stats { background: var(--azul-escuro); color: #fff; padding: 2rem 0; }
+  .stats__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; text-align: center; }
+  .stats strong { display: block; font-size: 2rem; }
+  .duas-col { display: grid; gap: 1.5rem; margin: 1.5rem 0; }
+  .fundo { background: var(--fundo); }
+  .cards { display: grid; gap: 1.2rem; margin-top: 1.6rem; }
+  .card { background: #fff; border: 1px solid #e2e8f0; border-radius: .8rem; padding: 1.5rem; position: relative; }
+  .card--destaque { border: 2px solid var(--azul); }
+  .selo { position: absolute; top: -0.9rem; left: 1.2rem; background: var(--azul); color: #fff; font-size: .75rem; font-weight: 700; padding: .2rem .7rem; border-radius: 1rem; }
+  .card ul { margin: 1rem 0 1.2rem 1.1rem; color: var(--cinza); }
+  .plano-pub { font-weight: 600; }
+  .plano-det, .plano-consulte { color: var(--cinza); font-size: .95rem; }
+  .nota { margin-top: 1rem; color: var(--cinza); font-size: .95rem; }
+  @media (min-width: 760px) { .duas-col { grid-template-columns: 1fr 1fr; } .cards { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1020px) { .cards { grid-template-columns: repeat(3, 1fr); } .duas-col + .btn-row { margin-top: 0; } }
+  #servicos .cards { grid-template-columns: repeat(2, 1fr); }
+  @media (min-width: 1020px) { #servicos .cards { grid-template-columns: repeat(4, 1fr); } }
+</style>

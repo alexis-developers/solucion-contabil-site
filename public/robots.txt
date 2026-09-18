@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://legalizacaodeempresa.com.br/sitemap.xml
