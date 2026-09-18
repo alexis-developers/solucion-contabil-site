@@ -2,3 +2,8 @@ name = "solucion-contabil"
 main = "./dist/_worker.js"
 compatibility_date = "2025-08-01"
 compatibility_flags = ["nodejs_compat"]
+
+routes = [
+  { pattern = "legalizacaodeempresa.com.br/*", zone_name = "legalizacaodeempresa.com.br" },
+  { pattern = "www.legalizacaodeempresa.com.br/*", zone_name = "legalizacaodeempresa.com.br" },
+]

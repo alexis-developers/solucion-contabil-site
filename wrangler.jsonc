@@ -1,14 +1,9 @@
 {
-	"$schema": "./node_modules/wrangler/config-schema.json",
-	"compatibility_date": "2026-09-17",
-	"compatibility_flags": ["global_fetch_strictly_public"],
-	"name": "home-alexis-marketing-e-dev-rea-de-trabalho-sites-solucion-consultoria",
-	"main": "@astrojs/cloudflare/entrypoints/server",
-	"assets": {
-		"directory": "./dist",
-		"binding": "ASSETS"
-	},
-	"observability": {
-		"enabled": true
-	}
+  "name": "solucion-contabil",
+  "compatibility_date": "2025-08-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "routes": [
+    { "pattern": "legalizacaodeempresa.com.br/*", "zone_name": "legalizacaodeempresa.com.br" },
+    { "pattern": "www.legalizacaodeempresa.com.br/*", "zone_name": "legalizacaodeempresa.com.br" }
+  ]
 }
