@@ -88,7 +88,7 @@ const canonical = new URL(path, site.url).toString();
     <header class="topo">
       <div class="wrap topo__inner">
         <a href="/" aria-label="Início">
-          <img src="/logo.png" alt="Solucion Contábil" width="150" height="40" />
+          <img src="/logo.png" alt="Solucion Contábil" width="128" height="34" />
         </a>
         <a class="btn btn--azul" href={`https://wa.me/${site.whatsapp}?text=${encodeURIComponent('Olá! Vim pelo site e gostaria de falar com um especialista.')}`} target="_blank" rel="noopener">Fale Conosco</a>
       </div>
@@ -118,8 +118,9 @@ const canonical = new URL(path, site.url).toString();
     <a class="wpp-float" href={`https://wa.me/${site.whatsapp}?text=${encodeURIComponent('Olá! Vim pelo site e gostaria de falar com um especialista.')}`} target="_blank" rel="noopener" aria-label="Falar no WhatsApp">✆</a>
     <style>
       .topo { background: #fff; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 10; }
-      .topo__inner { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem; }
-      .topo__inner img { height: 40px; width: auto; }
+      .topo__inner { display: flex; align-items: center; justify-content: space-between; padding: .8rem 1.25rem; max-width: 960px; margin: 0 auto; }
+      .topo__inner img { height: 34px; width: auto; }
+      .topo__inner .btn { padding: .6rem 1.2rem; font-size: .9rem; }
       .rodape { background: var(--tinta); color: #cbd5e1; }
       .rodape__grid { display: grid; gap: 1.5rem; padding: 2.5rem 1.25rem 1rem; }
       .rodape a { color: #fff; }
