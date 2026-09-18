@@ -108,6 +108,7 @@ const planos = [
             <ul>
               {e.itens.map((i) => <li>{i}</li>)}
             </ul>
+            <a class="btn btn--azul btn--mini" href={whatsappLink(`Olá! Tenho interesse no serviço de ${e.titulo} e gostaria de uma cotação.`)} target="_blank" rel="noopener">Quero este serviço</a>
           </div>
         ))}
       </div>
@@ -168,7 +169,8 @@ const planos = [
   .duas-col { display: grid; gap: 1.5rem; margin: 1.5rem 0; }
   .fundo { background: var(--fundo); }
   .cards { display: grid; gap: 1.2rem; margin-top: 1.6rem; }
-  .card { background: #fff; border: 1px solid #e2e8f0; border-radius: .8rem; padding: 1.5rem; position: relative; }
+  .card { background: #fff; border: 1px solid #e2e8f0; border-radius: .8rem; padding: 1.5rem; position: relative; display: flex; flex-direction: column; }
+  .card .btn--mini { margin-top: auto; align-self: flex-start; padding: .6rem 1.1rem; font-size: .9rem; }
   .card--destaque { border: 2px solid var(--azul); }
   .selo { position: absolute; top: -0.9rem; left: 1.2rem; background: var(--azul); color: #fff; font-size: .75rem; font-weight: 700; padding: .2rem .7rem; border-radius: 1rem; }
   .card ul { margin: 1rem 0 1.2rem 1.1rem; color: var(--cinza); }
