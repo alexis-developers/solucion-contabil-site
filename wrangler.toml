@@ -1,4 +1,4 @@
-name = "solucion-contabil-site"
+name = "solucion-contabil"
 main = "./dist/_worker.js"
 compatibility_date = "2025-08-01"
 compatibility_flags = ["nodejs_compat"]
