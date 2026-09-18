@@ -6,7 +6,7 @@ export const site = {
   telefoneExibicao: '(32) 98703-7221',
   fone1: '(21) 2283-5064',
   fone2: '(21) 99997-2229',
-  email: '',
+  email: 'consultoria@solucionconsultoria.com.br',
   endereco: {
     logradouro: 'Rua do Acre, 51 – Sala 905',
     bairro: 'Centro',
